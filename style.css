@@ -194,3 +194,10 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+.note {
+  font-style: italic;
+  color: #555; /* Optional: to make the text slightly lighter */
+  margin-top: 5px; /* Optional: adds some space between the range and note */
+}
+
