@@ -142,7 +142,7 @@ document.getElementById('fetchBusinesses').addEventListener('click', async () =>
       const lat = marker.getLatLng().lat;
       const lng = marker.getLatLng().lng;
 
-      const url = `https://api.magicapi.dev/api/v1/openwebninja/local-business-data/search-nearby?query=${encodeURIComponent(query)}&lat=${lat}&lng=${lng}&radius=${radius}&extract_emails_and_contacts=true&limit=20`;
+      const url = `https://api.magicapi.dev/api/v1/openwebninja/local-business-data/search-nearby?query=${encodeURIComponent(query)}&lat=${lat}&lng=${lng}&radius=${radius}&extract_emails_and_contacts=true&limit=20&fields=business_id,type,phone_number,full_address,website`;
 
       const response = await fetch(url, {
         headers: {
@@ -165,7 +165,8 @@ document.getElementById('fetchBusinesses').addEventListener('click', async () =>
           <h3>${business.name}</h3>
           <p>Phone: ${business.phone_number || 'N/A'}</p>
           <p>Email: ${business.emails_and_contacts?.emails?.[0] || 'N/A'}</p>
-          <p>Website: ${business.website || 'N/A'}</p>
+          <p>Website: ${business.website ? `<a href="${business.website}" target="_blank">${business.website}</a>` : 'N/A'}</p>
+          <p>Address: ${business.full_address || 'N/A'}</p> <!-- Add full address -->
         </div>
       `).join('');
     } else {
